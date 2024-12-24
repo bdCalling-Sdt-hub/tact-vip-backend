@@ -18,7 +18,7 @@ async function main() {
   try {
     await mongoose.connect(config.database_url as string);
     defaultTask();
-    watchGoogleSheet('1w_z8Qgqpv4hkNuUAH8Jjy0gL4ySeWFEkIGxuYYFchI4');
+    // watchGoogleSheet('1w_z8Qgqpv4hkNuUAH8Jjy0gL4ySeWFEkIGxuYYFchI4');
     server = app.listen(Number(config.port), config.ip as string, () => {
       //@ts-ignore
       console.log(`app is listening on ${config.ip}:${config.port}`.green.bold);

@@ -3,6 +3,7 @@ import googleAuth from './googleAuth';
 import generateRandomString from './generateRendomString';
 
 async function watchGoogleSheet(sheetId: string) {
+  const id = generateRandomString(5);
   try {
     const client = await googleAuth.getClient();
 
@@ -13,7 +14,7 @@ async function watchGoogleSheet(sheetId: string) {
     const response = await drive.files.watch({
       fileId: sheetId,
       requestBody: {
-        id: generateRandomString(5), // Unique channel ID
+        id, // Unique channel ID
         type: 'web_hook',
         address: 'https://api.tati.techcrafters.tech/webhook', // Your webhook endpoint
       },

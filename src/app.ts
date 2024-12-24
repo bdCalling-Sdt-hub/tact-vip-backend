@@ -26,9 +26,11 @@ app.use(
   }),
 );
 
- 
 app.use('/api/v1', router);
 
+app.post('/webhook', async (req, res) => {
+  console.log(req.body);
+});
 app.get('/', (req: Request, res: Response) => {
   res.send('server is running');
 });

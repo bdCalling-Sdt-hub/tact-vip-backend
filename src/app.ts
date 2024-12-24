@@ -27,9 +27,10 @@ app.use(
 );
 
 app.use('/api/v1', router);
-
+let count = 0;
 app.post('/webhook', async (req, res) => {
-  console.log(req.body);
+  count++;
+  console.log('NOtification: ' + count);
 });
 app.get('/', (req: Request, res: Response) => {
   res.send('server is running');

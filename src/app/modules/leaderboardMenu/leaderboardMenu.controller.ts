@@ -7,7 +7,7 @@ import sendResponse from '../../utils/sendResponse';
 const createLeaderboardMenu = catchAsync(async (req: Request, res: Response) => {
  const result = await leaderboardMenuService.createLeaderboardMenu(req.body);
   sendResponse(res, {
-    statusCode: 201,
+    statusCode: 200,
     success: true,
     message: 'LeaderboardMenu created successfully',
     data: result,

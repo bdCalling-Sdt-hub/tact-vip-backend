@@ -7,28 +7,22 @@ const claimBonusSchema = new Schema<IClaimBonus>(
     logo: {
       type: String,
       required: true,
-      trim: true,  
+      trim: true,
     },
-    title: {
-      type: String,
-      required: true, 
-    },
+
     mainBonus: {
       type: String,
-      required: true, 
+      required: true,
     },
     extraBonus: {
       type: String,
-      required: true, 
+      required: true,
     },
-    redirectUrl: {
+    hyperLink: {
       type: String,
-      required: true, 
+      required: true,
     },
-    howToClaimText: {
-      type: String,
-      required: true, 
-    },
+    
   },
   {
     timestamps: true,

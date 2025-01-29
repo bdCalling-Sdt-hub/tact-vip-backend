@@ -4,9 +4,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { Application, Request, Response } from 'express'; 
+import express, { Application, Request, Response } from 'express';
 import notFound from './app/middleware/notfound';
-import router from './app/routes'; 
+import router from './app/routes';
+import lodash from 'lodash';
+import { io } from './server';
+
 const app: Application = express();
 app.use(express.static('public'));
 app.use(express.json({ limit: '500mb' }));
@@ -24,16 +27,26 @@ app.use(
 );
 
 app.use('/api/v1', router);
-// let count = 0;
-// app.post('/webhook', async (req, res) => {
-//   count++;
-//   console.log('NOtification: ' + count);
-// });
-app.get('/', (req: Request, res: Response) => {
-  res.send('server is running');
+ 
+
+app.post('/webhook', async (req, res) => { 
+  try {
+      let debounce_fun = lodash.debounce(function () {
+        if (io) {
+          io.emit('data-change', { status: true, change: true });
+        }
+      }, 5000);
+
+      debounce_fun();
+  } catch (error) {
+    console.log(error)
+  } 
 });
 
 
+app.get('/', (req: Request, res: Response) => {
+  res.send('server is running');
+});
 
 //Not Found
 app.use(notFound);

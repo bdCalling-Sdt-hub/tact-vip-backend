@@ -17,7 +17,7 @@ const createLeaderboardMenu = async (payload: ILeaderboardMenu) => {
 
 const getAllLeaderboardMenu = async (query: Record<string, any>) => {
   const leaderboardMenuModel = new QueryBuilder(LeaderboardMenu.find(), query)
-    .search([])
+    .search(["title"])
     .filter()
     .paginate()
     .sort()

@@ -1,5 +1,4 @@
-node_modules
-learnwithredwan-dbcdf7eeee3b.json
+node_modules 
 logs/
 **/logs/
 .env

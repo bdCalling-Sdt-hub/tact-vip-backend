@@ -14,7 +14,7 @@ const createChallenges = async (payload: IChallenges) => {
 
 const getAllChallenges = async (query: Record<string, any>) => {
   const challengesModel = new QueryBuilder(Challenges.find(), query)
-    .search([])
+    .search(['title'])
     .filter()
     .paginate()
     .sort()
@@ -32,7 +32,7 @@ const getAllChallenges = async (query: Record<string, any>) => {
 const getChallengesById = async (id: string) => {
   const result = await Challenges.findById(id);
   if (!result) {
-    throw new Error('Challenges not found!');
+    throw new AppError(httpStatus.BAD_REQUEST, 'Challenges not found!');
   }
   return result;
 };

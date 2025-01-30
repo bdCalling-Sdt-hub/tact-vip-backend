@@ -5,8 +5,7 @@ import generateRandomString from './generateRendomString';
 async function watchGoogleSheet(sheetId: string) {
   const id = generateRandomString(5);
   try {
-    const client = await googleAuth.getClient();
-
+    const client = await googleAuth.getClient();  
     //@ts-ignore
     const drive = google.drive({ version: 'v3', auth: client });
 

@@ -9,6 +9,7 @@ import notFound from './app/middleware/notfound';
 import router from './app/routes';
 import lodash from 'lodash';
 import { io } from './server';
+import globalErrorHandler from './app/middleware/globalErrorhandler';
 
 const app: Application = express();
 app.use(express.static('public'));
@@ -27,22 +28,20 @@ app.use(
 );
 
 app.use('/api/v1', router);
- 
 
-app.post('/webhook', async (req, res) => { 
+app.post('/webhook', async (req, res) => {
   try {
-      let debounce_fun = lodash.debounce(function () {
-        if (io) {
-          io.emit('data-change', { status: true, change: true });
-        }
-      }, 5000);
+    let debounce_fun = lodash.debounce(function () {
+      if (io) {
+        io.emit('data-change', { status: true, change: true });
+      }
+    }, 5000);
 
-      debounce_fun();
+    debounce_fun();
   } catch (error) {
-    console.log(error)
-  } 
+    console.log(error);
+  }
 });
-
 
 app.get('/', (req: Request, res: Response) => {
   res.send('server is running');
@@ -50,5 +49,6 @@ app.get('/', (req: Request, res: Response) => {
 
 //Not Found
 app.use(notFound);
+app.use(globalErrorHandler);
 
 export default app;

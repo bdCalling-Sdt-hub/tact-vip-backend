@@ -1,6 +1,5 @@
-
 import { Request, Response } from 'express';
-import catchAsync from '../../utils/catchAsync';  
+import catchAsync from '../../utils/catchAsync';
 import { leaderboardService } from './leaderboard.service';
 import sendResponse from '../../utils/sendResponse';
 import { storeFile } from '../../utils/fileHelper';
@@ -46,7 +45,6 @@ const getWagerCurrent = catchAsync(async (req: Request, res: Response) => {
 //   });
 
 // });
-
 
 // const deleteLeaderboard = catchAsync(async (req: Request, res: Response) => {
 //  const result = await leaderboardService.deleteLeaderboard(req.params.id);

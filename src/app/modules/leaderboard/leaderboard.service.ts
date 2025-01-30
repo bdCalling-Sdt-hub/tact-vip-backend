@@ -24,6 +24,7 @@ const getWagerCurrent = async (): Promise<any[]> => {
 
 const getWagerPast = async (): Promise<any[]> => {
   const values: any[] = await getExcelSheetValue(
+    // ad361888359135a48f6a5ecb9df1504d1618dfb0
     '1w_z8Qgqpv4hkNuUAH8Jjy0gL4ySeWFEkIGxuYYFchI4',
     'Sheet1',
   );

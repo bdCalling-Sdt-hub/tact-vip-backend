@@ -4,12 +4,11 @@ import validateRequest from '../../middleware/validateRequest';
 import { userValidation } from './user.validation';
 import auth from '../../middleware/auth';
 import { USER_ROLE } from './user.constants';
-import parseData from '../../middleware/parseData';
+import parseData from '../../middleware/parseData'; 
 import fileUpload from '../../middleware/fileUpload';
 const upload = fileUpload('./public/uploads/profile');
 
 const router = Router();
-
 router.post(
   '/create',
   upload.single('image'),

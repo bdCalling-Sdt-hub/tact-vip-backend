@@ -16,8 +16,8 @@ export const io = initializeSocketIO(createServer(app));
 
 async function main() {
   try {
-    await mongoose.connect(config.database_url as string);
-    defaultTask();
+    // await mongoose.connect(config.database_url as string);
+    // defaultTask();
     // watchGoogleSheet('1w_z8Qgqpv4hkNuUAH8Jjy0gL4ySeWFEkIGxuYYFchI4');
     server = app.listen(Number(config.port), config.ip as string, () => {
       //@ts-ignore

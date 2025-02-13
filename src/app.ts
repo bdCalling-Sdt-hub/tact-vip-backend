@@ -10,6 +10,10 @@ import router from './app/routes';
 import lodash from 'lodash';
 import { io } from './server';
 import globalErrorHandler from './app/middleware/globalErrorhandler';
+import axios from 'axios';
+import AppError from './app/error/AppError';
+import httpStatus from 'http-status';
+import catchAsync from './app/utils/catchAsync';
 
 const app: Application = express();
 app.use(express.static('public'));
@@ -43,6 +47,33 @@ app.post('/webhook', async (req, res) => {
   }
 });
 
+app.get(
+  '/api/v1/youtube-data',
+
+  catchAsync(async (req, res) => {
+    const { playlist, ...queries } = req.query;
+    if (!playlist) {
+      throw new AppError(httpStatus.BAD_REQUEST, 'playlist id is required');
+    }
+    try {
+      const response = await axios.get(
+        'https://www.googleapis.com/youtube/v3/playlistItems',
+        {
+          params: {
+            ...queries,
+            part: 'snippet',
+            playlistId: playlist,
+            key: 'AIzaSyAinhUvJieH3RdLZARQeMcf3P4oBrIGwbY',
+          },
+        },
+      );
+
+      res.json(response.data.items);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }),
+);
 app.get('/', (req: Request, res: Response) => {
   res.send('server is running');
 });

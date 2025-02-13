@@ -15,6 +15,8 @@ const getWagerPast = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+
 const getWagerCurrent = catchAsync(async (req: Request, res: Response) => {
   const result = await leaderboardService.getWagerCurrent();
   sendResponse(res, {

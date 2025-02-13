@@ -1,6 +1,6 @@
 node_modules 
 logs/
-./learnwithredwan-dbcdf7eeee3b.json
+learnwithredwan-dbcdf7eeee3b.json
 **/logs/
 .env
 .vercel
